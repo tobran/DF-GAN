@@ -40,8 +40,8 @@ Train DF-GAN models:
 - `*.yml` files are example configuration files for training/evaluation our models.
 
 **Pretrained Model**
-- [DF-GAN for bird](https://drive.google.com/open?id=1lqNG75suOuR_8gjoEPYNp8VyT_ufPPig). Download and save it to `models/`
-- [DF-GAN for coco](https://drive.google.com/open?id=1i9Xkg9nU74RAvkcqKE-rJYhjvzKAMnCi). Download and save it to `models/`
+- [DF-GAN for bird](https://drive.google.com/file/d/1svVTyKWj5B1J82rEiZILUS289DsmT6U7/view?usp=sharing). Download and save it to `models/bird/`
+- [DF-GAN for coco](https://drive.google.com/file/d/15llod5eTjjdzDTXQroJG_eh2c-GrW9H7/view?usp=sharing). Download and save it to `models/coco/`
 
 
 ### Evaluating
