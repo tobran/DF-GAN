@@ -17,7 +17,7 @@ Official Pytorch implementation for DF-GAN in the paper [DF-GAN: Deep Fusion Gen
 Clone this repo.
 ```
 git clone https://github.com/tobran/DF-GAN
-cd DF-GAN/
+cd DF-GAN/code/
 ```
 
 ### Datasets Preparation
