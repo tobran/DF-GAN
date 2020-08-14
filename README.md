@@ -55,7 +55,7 @@ cd DF-GAN/code/
 ---
 ### Citing DF-GAN
 
-If you find DF-GAN useful in your research, please consider citing:
+If you find DF-GAN useful in your research, please consider citing our paper:
 
 ```
 @article{ming2020DFGAN,
