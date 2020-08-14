@@ -1,4 +1,4 @@
-# DF-GAN (Python 3, Pytorch 1.0)
+# DF-GAN
 
 Official Pytorch implementation for DF-GAN in the paper [DF-GAN: Deep Fusion Generative Adversarial Networks for Text-to-Image Synthesis](https://arxiv.org/abs/2008.05865) by Ming Tao, Hao Tang, Songsong Wu, Nicu Sebe, Fei Wu, Xiao-Yuan Jing. 
 
