@@ -33,18 +33,19 @@ cd DF-GAN/
 ---
 ### Training
 
-Train DF-GAN models:
+**Train DF-GAN models:**
   - For bird dataset: `python main.py --cfg cfg/bird.yml`
   - For coco dataset: `python main.py --cfg cfg/coco.yml`
 
 - `*.yml` files are example configuration files for training/evaluation our models.
 
-**Pretrained Model**
+### Evaluating
+
+**Dwonload Pretrained Model**
 - [DF-GAN for bird](https://drive.google.com/file/d/1svVTyKWj5B1J82rEiZILUS289DsmT6U7/view?usp=sharing). Download and save it to `models/bird/`
 - [DF-GAN for coco](https://drive.google.com/file/d/15llod5eTjjdzDTXQroJG_eh2c-GrW9H7/view?usp=sharing). Download and save it to `models/coco/`
 
-
-### Evaluating
+**evaluate DF-GAN models:**
 
 - To evaluate our DF-GAN on CUB, change B_VALIDATION to True in the bird.yml. and then run `python main.py --cfg cfg/bird.yml`
 - To evaluate our DF-GAN on coco, change B_VALIDATION to True in the coco.yml. and then run `python main.py --cfg cfg/coco.yml`
