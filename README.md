@@ -13,7 +13,7 @@ Official Pytorch implementation for DF-GAN in the paper [DF-GAN: Deep Fusion Gen
 - scikit-image
 
 ### Installation
----
+
 Clone this repo.
 ```
 git clone https://github.com/tobran/DF-GAN
@@ -31,8 +31,8 @@ cd DF-GAN/
 2. Download the [pre-trained text encoder](https://drive.google.com/open?id=1zIrXCE9F6yfbEJIbNP5-YrEe2pZcPSGJ) for coco and save it to `DAMSMencoders/coco/`
 
 ---
-
 ### Training
+
 Train DF-GAN models:
   - For bird dataset: `python main.py --cfg cfg/bird.yml`
   - For coco dataset: `python main.py --cfg cfg/coco.yml`
@@ -43,15 +43,17 @@ Train DF-GAN models:
 - [DF-GAN for bird](https://drive.google.com/open?id=1lqNG75suOuR_8gjoEPYNp8VyT_ufPPig). Download and save it to `models/`
 - [DF-GAN for coco](https://drive.google.com/open?id=1i9Xkg9nU74RAvkcqKE-rJYhjvzKAMnCi). Download and save it to `models/`
 
-**Validation**
+
+### Evaluating
+
 - To evaluate our DF-GAN on CUB, change B_VALIDATION to True in the bird.yml. and then run `python main.py --cfg cfg/bird.yml`
 - To evaluate our DF-GAN on coco, change B_VALIDATION to True in the coco.yml. and then run `python main.py --cfg cfg/coco.yml`
 - We compute inception score for models trained on birds using [StackGAN-inception-model](https://github.com/hanzhanggit/StackGAN-inception-model).
 - We compute FID for CUB and coco using [DM-GAN/eval/FID](https://github.com/MinfengZhu/DM-GAN/tree/master/eval/FID). 
 
-
-### Citing DF-GAN
 ---
+### Citing DF-GAN
+
 If you find DF-GAN useful in your research, please consider citing:
 
 ```
