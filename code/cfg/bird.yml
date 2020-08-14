@@ -1,0 +1,27 @@
+CONFIG_NAME: 'bird'
+
+DATASET_NAME: 'birds'
+DATA_DIR: '../data/birds'
+GPU_ID: 0
+WORKERS: 1
+
+
+B_VALIDATION: False # True  # False
+loss: 'hinge'
+
+TREE:
+    BRANCH_NUM: 1
+    BASE_SIZE: 256
+
+
+TRAIN:
+    NF: 32 # default 64
+    BATCH_SIZE: 24
+    MAX_EPOCH: 601
+    NET_G: '../test'
+
+
+TEXT:
+    EMBEDDING_DIM: 256
+    CAPTIONS_PER_IMAGE: 10
+    DAMSM_NAME: '../DAMSMencoders/bird/inception/text_encoder200.pth'

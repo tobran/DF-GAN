@@ -1,0 +1,27 @@
+CONFIG_NAME: 'coco'
+
+DATASET_NAME: 'coco'
+DATA_DIR: '../data/coco'
+GPU_ID: 0
+WORKERS: 1
+
+
+B_VALIDATION: False # True  # False
+loss: 'hinge'
+
+TREE:
+    BRANCH_NUM: 1
+    BASE_SIZE: 256
+
+
+TRAIN:
+    NF: 32 # default 64
+    BATCH_SIZE: 24
+    MAX_EPOCH: 121
+    NET_G: '../test'
+
+
+TEXT:
+    EMBEDDING_DIM: 256
+    CAPTIONS_PER_IMAGE: 5
+    DAMSM_NAME: '../DAMSMencoders/coco/text_encoder100.pth'
