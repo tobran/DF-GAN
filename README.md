@@ -4,7 +4,7 @@ Official Pytorch implementation for DF-GAN in the paper [DF-GAN: Deep Fusion Gen
 
 <img src="framework.png" width="900px" height="506px"/>
 
-
+---
 ### Requirements
 - python 3.6+
 - Pytorch 1.0+
