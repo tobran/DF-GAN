@@ -50,8 +50,9 @@ Train DF-GAN models:
 - We compute FID for CUB and coco using [DM-GAN/eval/FID](https://github.com/MinfengZhu/DM-GAN/tree/master/eval/FID). 
 
 
-### Citing AttnGAN
-If you find AttnGAN useful in your research, please consider citing:
+### Citing DF-GAN
+---
+If you find DF-GAN useful in your research, please consider citing:
 
 ```
 @article{ming2020DFGAN,
