@@ -2,7 +2,7 @@
 
 Official Pytorch implementation for DF-GAN in the paper [DF-GAN: Deep Fusion Generative Adversarial Networks for Text-to-Image Synthesis](https://arxiv.org/abs/2008.05865) by Ming Tao, Hao Tang, Songsong Wu, Nicu Sebe, Fei Wu, Xiao-Yuan Jing. 
 
-<img src="framework.jpg" width="900px" height="350px"/>
+<img src="framework.png" width="3840px" height="2160px"/>
 
 
 ### Requirements
