@@ -11,7 +11,7 @@ Official Pytorch implementation for our paper [DF-GAN: Deep Fusion Generative Ad
 - easydict
 - nltk
 - scikit-image
-
+- A titan xp (set nf=32 in *.yaml) or a V100 32GB (set nf=64 in *.yaml)
 ### Installation
 
 Clone this repo.
