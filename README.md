@@ -1,4 +1,6 @@
-# DF-GAN: Deep Fusion Generative Adversarial Networks for Text-to-Image Synthesis 
+# DF-GAN: Deep Fusion Generative Adversarial Networks for Text-to-Image Synthesis
+
+(A novel and effective one-stage Text-to-Image Backbone)
 
 Official Pytorch implementation for our paper [DF-GAN: Deep Fusion Generative Adversarial Networks for Text-to-Image Synthesis](https://arxiv.org/abs/2008.05865) by Ming Tao, [Hao Tang](https://scholar.google.com/citations?user=9zJkeEMAAAAJ&hl=en), [Songsong Wu](https://www.researchgate.net/profile/Songsong_Wu), [Nicu Sebe](https://scholar.google.com/citations?user=tNtjSewAAAAJ&hl=en), [Fei Wu](https://scholar.google.com/citations?user=tgeCjhEAAAAJ&hl=en), [Xiao-Yuan Jing](https://scholar.google.com/citations?hl=en&user=2IInQAgAAAAJ). 
 
