@@ -1,4 +1,4 @@
-# DF-GAN: Deep Fusion Generative Adversarial Networks for Text-to-Image Synthesis
+# DF-GAN: A Simple and Effective Baseline for Text-to-Image Synthesis
 
 (A novel and effective one-stage Text-to-Image Backbone)
 
