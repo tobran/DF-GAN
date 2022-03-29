@@ -1,4 +1,4 @@
-# DF-GAN: A Simple and Effective Baseline for Text-to-Image Synthesis (CVPR 2022)
+# DF-GAN: A Simple and Effective Baseline for Text-to-Image Synthesis (CVPR 2022 Oral)
 
 (A novel and effective one-stage Text-to-Image Backbone)
 
