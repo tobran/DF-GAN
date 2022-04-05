@@ -61,8 +61,8 @@ If you find DF-GAN useful in your research, please consider citing our paper:
 
 ```
 @article{ming2020DFGAN,
-  title={DF-GAN: Deep Fusion Generative Adversarial Networks for Text-to-Image Synthesis},
-  author={Ming Tao, Hao Tang, Songsong Wu, Nicu Sebe, Fei Wu, Xiao-Yuan Jing, Bingkun Bao},
+  title={DF-GAN: A Simple and Effective Baseline for Text-to-Image Synthesis},
+  author={Ming Tao, Hao Tang, Fei Wu, Xiao-Yuan Jing, Bing-Kun Bao, Changsheng Xu},
   journal={arXiv preprint arXiv:2008.05865},
   year={2020}
 }
