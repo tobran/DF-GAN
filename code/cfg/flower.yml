@@ -1,0 +1,38 @@
+CONFIG_NAME: flower
+
+dataset_name: flowers
+data_dir: ../data/flower
+
+gpu_id: 0
+imsize: 256
+z_dim: 100
+cond_dim: 256
+manual_seed: 100
+cuda: True
+
+stamp: 'normal'
+state_epoch: 100
+max_epoch: 1001
+batch_size: 32
+nf: 32
+ch_size: 3
+
+model: base
+
+gen_interval: 1
+test_interval: 10
+save_interval: 10
+
+truncation: True
+trunc_rate: 0.88
+
+sample_times: 15
+npz_path: ../data/flower/npz/flower_val256_FIDK0.npz
+example_captions: ./example_captions/flower.txt
+samples_save_dir: ./samples/flower/
+
+TEXT:
+    WORDS_NUM: 18
+    EMBEDDING_DIM: 256
+    CAPTIONS_PER_IMAGE: 10
+    DAMSM_NAME: ../data/flower/DAMSMencoder/text_encoder100.pth

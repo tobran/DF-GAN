@@ -4,16 +4,12 @@
 
 Official Pytorch implementation for our paper [DF-GAN: A Simple and Effective Baseline for Text-to-Image Synthesis](https://arxiv.org/abs/2008.05865) by [Ming Tao](https://scholar.google.com/citations?user=5GlOlNUAAAAJ=en), [Hao Tang](https://scholar.google.com/citations?user=9zJkeEMAAAAJ&hl=en), [Fei Wu](https://scholar.google.com/citations?user=tgeCjhEAAAAJ&hl=en), [Xiao-Yuan Jing](https://scholar.google.com/citations?hl=en&user=2IInQAgAAAAJ), [Bing-Kun Bao](https://scholar.google.com/citations?user=lDppvmoAAAAJ&hl=en), [Changsheng Xu](https://scholar.google.com/citations?user=hI9NRDkAAAAJ). 
 
-<img src="framework.png" width="900px" height="448px"/>
+<img src="framework.png" width="942px" height="448px"/>
 
 ---
 ### Requirements
-- python 3.6+
-- Pytorch 1.0+
-- easydict
-- nltk
-- scikit-image
-- A titan xp (set nf=32 in *.yaml) or a V100 32GB (set nf=64 in *.yaml)
+- python 3.7+
+- Pytorch 1.9+
 ### Installation
 
 Clone this repo.

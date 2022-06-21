@@ -1,0 +1,9 @@
+**/logs
+**/logs*
+**/data*
+**/checkpoints
+**/imgs*
+**/vals*
+**/samples*
+**/saved_models
+**/__pycache__**

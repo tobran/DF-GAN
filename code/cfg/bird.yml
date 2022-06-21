@@ -1,27 +1,42 @@
-CONFIG_NAME: 'bird'
+CONFIG_NAME: bird
 
-DATASET_NAME: 'birds'
-DATA_DIR: '../data/birds'
-GPU_ID: 0
-WORKERS: 1
+dataset_name: birds
+data_dir: ../data/birds
 
+gpu_id: 0
+imsize: 256
+z_dim: 100
+cond_dim: 256
+manual_seed: 100
+cuda: True
 
-B_VALIDATION: False # True  # False
-loss: 'hinge'
+stamp: 'normal'
+state_epoch: 0
+max_epoch: 1301
+batch_size: 32
+nf: 32
+ch_size: 3
 
-TREE:
-    BRANCH_NUM: 1
-    BASE_SIZE: 256
+model: base
 
+gen_interval: 1
+test_interval: 10
+save_interval: 10
 
-TRAIN:
-    NF: 32 # default 64
-    BATCH_SIZE: 24
-    MAX_EPOCH: 601
-    NET_G: '../test'
+truncation: True
+trunc_rate: 0.86
 
+sample_times: 10
+npz_path: ../data/birds/npz/bird_val256_FIDK0.npz
+example_captions: ./example_captions/bird.txt
+samples_save_dir: ./samples/bird/
+checkpoint: ./saved_models/bird/pretrained/state_epoch_1220.pth
+
+save_image: False
+val_save_dir: ./vals/bird/
 
 TEXT:
+    WORDS_NUM: 18
     EMBEDDING_DIM: 256
     CAPTIONS_PER_IMAGE: 10
-    DAMSM_NAME: '../DAMSMencoders/bird/inception/text_encoder200.pth'
+    DAMSM_NAME: ../data/birds/DAMSMencoder/text_encoder200.pth
