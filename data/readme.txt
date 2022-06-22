@@ -1,1 +1,1 @@
-Put CUB and coco datasets here.
+Put CUB and COCO datasets here.
