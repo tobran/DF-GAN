@@ -1,6 +1,6 @@
 **/logs
 **/logs*
-**/data*
+**/data/*
 **/checkpoints
 **/imgs*
 **/vals*
