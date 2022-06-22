@@ -71,7 +71,7 @@ We synthesize about 3w images from the test descriptions and evaluate the FID be
 The released model achieves better performance than the CVPR paper version.
 
 
-| Model | CUB-FID↓ | COCO-FID↓ |COCO-FID↓ |
+| Model | CUB-FID↓ | COCO-FID↓ |NOP↓ |
 | --- | --- | --- | --- |
 | DF-GAN(paper) | 14.81 | 19.32 | 19M |
 | DF-GAN(pretrained model) | **12.10** | **15.41** | **18M** |
