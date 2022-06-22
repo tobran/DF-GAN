@@ -66,12 +66,14 @@ def prepare_models(args):
 
 
 def prepare_dataset(args, split, transform):
-    if args.ch_size!=3:
-        imsize = 256
-    else:
-        imsize = args.imsize
+    imsize = args.imsize
     if transform is not None:
         image_transform = transform
+    elif args.CONFIG_NAME.find('CelebA') != -1:
+        image_transform = transforms.Compose([
+            transforms.Resize(int(imsize)),
+            transforms.RandomCrop(imsize),
+            transforms.RandomHorizontalFlip()])
     else:
         image_transform = transforms.Compose([
             transforms.Resize(int(imsize * 76 / 64)),

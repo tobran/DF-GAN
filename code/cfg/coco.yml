@@ -24,13 +24,15 @@ test_interval: 5
 save_interval: 5
 
 truncation: True
-trunc_rate: 0.86
+trunc_rate: 0.88
 
 sample_times: 1
 npz_path: ../data/coco/npz/coco_val256_FIDK0.npz
 example_captions: ./example_captions/coco.txt
 samples_save_dir: ./samples/coco/
 checkpoint: ./saved_models/coco/pretrained/state_epoch_290.pth
+
+save_image: False
 val_save_dir: ./vals/coco/
 
 TEXT:

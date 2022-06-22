@@ -306,9 +306,9 @@ class TextImgDataset(data.Dataset):
         #
         if self.dataset_name.find('coco') != -1:
             if self.split=='train':
-                img_name = '%s/images/train2014/jpg/%s.jpg' % (data_dir, key)
+                img_name = '%s/images/train2014/%s.jpg' % (data_dir, key)
             else:
-                img_name = '%s/images/val2014/jpg/%s.jpg' % (data_dir, key)
+                img_name = '%s/images/val2014/%s.jpg' % (data_dir, key)
         elif self.dataset_name.find('flower') != -1:
             if self.split=='train':
                 img_name = '%s/oxford-102-flowers/images/%s.jpg' % (data_dir, key)

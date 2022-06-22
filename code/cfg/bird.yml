@@ -24,7 +24,7 @@ test_interval: 10
 save_interval: 10
 
 truncation: True
-trunc_rate: 0.86
+trunc_rate: 0.88
 
 sample_times: 10
 npz_path: ../data/birds/npz/bird_val256_FIDK0.npz
