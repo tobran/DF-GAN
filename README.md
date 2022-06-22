@@ -13,6 +13,7 @@ Official Pytorch implementation for our paper [DF-GAN: A Simple and Effective Ba
 <img src="framework.png" width="804px" height="380px"/>
 
 
+
 ---
 ## Requirements
 - python 3.8
