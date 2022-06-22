@@ -54,7 +54,7 @@ Our code supports FID evaluation during training, the results are stored in Tens
 - [DF-GAN for bird](https://drive.google.com/file/d/1rzfcCvGwU8vLCrn5reWxmrAMms6WQGA6/view?usp=sharing). Download and save it to `./code/saved_models/bird/`
 - [DF-GAN for coco](https://drive.google.com/file/d/1e_AwWxbClxipEnasfz_QrhmLlv2-Vpyq/view?usp=sharing). Download and save it to `./code/saved_models/coco/`
 
-### Evaluate DF-GAN models:
+### Evaluate DF-GAN models
 We synthesize about 3w images from the test descriptions and evaluate the FID between **synthesized images** and **test images** of each dataset.
   ```
   cd DF-GAN/code/
@@ -63,11 +63,11 @@ We synthesize about 3w images from the test descriptions and evaluate the FID be
 - For coco dataset: `bash scripts/calc_FID.sh ./cfg/coco.yml`
 - We compute inception score for models trained on birds using [StackGAN-inception-model](https://github.com/hanzhanggit/StackGAN-inception-model). 
 
-### Some tips:
+### Some tips
 - Our evaluation codes do not save the synthesized images (about 3w images). If you want to save them, set **save_image: True** in the YAML file.
 - Since we find that the IS can be overfitted heavily through Inception-V3 jointed training, we do not recommend the IS metric for text-to-image synthesis.
 
-### Performance:
+### Performance
 The released model achieves better performance than the CVPR paper version.
 
 
