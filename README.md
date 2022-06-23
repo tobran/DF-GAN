@@ -17,6 +17,7 @@ Official Pytorch implementation for our paper [DF-GAN: A Simple and Effective Ba
 ## Requirements
 - python 3.8
 - Pytorch 1.9
+- 1x12GB NVIDIA GPU
 ## Installation
 
 Clone this repo.
