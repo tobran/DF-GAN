@@ -45,7 +45,7 @@ cd DF-GAN/code/
 If your training process is interrupted unexpectedly, set **resume_epoch** and **resume_model_path** in train.sh to resume training.
 
 ### TensorBoard
-Our code supports FID evaluation during training, the results are stored in TensorBoard files under ./logs. You can change the test interval by changing **test_interval** in the YAML file.
+Our code supports automate FID evaluation during training, the results are stored in TensorBoard files under ./logs. You can change the test interval by changing **test_interval** in the YAML file.
   - For bird dataset: `tensorboard --logdir=./code/logs/bird/train --port 8166`
   - For coco dataset: `tensorboard --logdir=./code/logs/coco/train --port 8177`
 
