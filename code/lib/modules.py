@@ -86,7 +86,7 @@ def train(dataloader, netG, netD, netC, text_encoder, optimizerG, optimizerD, ar
         loop.close()
 
 
-def sample(dataloader, netG, text_encoder, save_dir, device, multi_gpus, z_dim, stamp, truncation, trunc_rate):
+def sample(dataloader, netG, text_encoder, save_dir, device, multi_gpus, z_dim, stamp, truncation, trunc_rate, times):
     for step, data in enumerate(dataloader, 0):
         ######################################################
         # (1) Prepare_data
@@ -120,7 +120,7 @@ def sample(dataloader, netG, text_encoder, save_dir, device, multi_gpus, z_dim, 
             # (3) Save fake images
             ######################################################            
             if multi_gpus==True:
-                filename = 'd%d_s%s.png' % (get_rank(),stamp)
+                filename = 'd%d_s%s.png' % (get_rank(),times)
             else:
                 filename = 's%s.png' % (stamp)
             fullpath = '%s_%s.png' % (s_tmp, filename)
@@ -219,6 +219,7 @@ def eval(dataloader, text_encoder, netG, device, m1, s1, save_imgs, save_dir,
         ])
     n_gpu = dist.get_world_size()
     dl_length = dataloader.__len__()
+
     imgs_num = dl_length * n_gpu * batch_size * times
     pred_arr = np.empty((imgs_num, dims))
     if (n_gpu!=1) and (get_rank() != 0):
@@ -286,7 +287,7 @@ def save_single_imgs(imgs, save_dir, time, dl_len, batch_n, batch_size):
         im = im.astype(np.uint8)
         im = np.transpose(im, (1, 2, 0))
         im = Image.fromarray(im)
-        filename = 'imgs_n%06d_gpu%1d.png'%(time*dl_len+batch_size*batch_n+j, get_rank())
+        filename = 'imgs_n%06d_gpu%1d.png'%(time*dl_len*batch_size+batch_size*batch_n+j, get_rank())
         fullpath = osp.join(folder, filename)
         im.save(fullpath)
 
