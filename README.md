@@ -11,7 +11,11 @@ Official Pytorch implementation for our paper [DF-GAN: A Simple and Effective Ba
 
 <img src="framework.png" width="804px" height="380px"/>
 
+---
+## News!
+Our new model GALIP ([paper link](https://arxiv.org/abs/2301.12959), [code link](https://github.com/tobran/GALIP)) achieves comparable results to Large Pretrained Diffusion Models! Furthermore, our GALIP is training-efficient which only requires 3% training data, 6% learnable parameters, and 3 days of pretraining on 8x3090. Our GALIP achieves ~120 x faster synthesis speed and can be inferred on CPU. 
 
+GALIP significantly lowers the hardware threshold for training and inference. We hope that more users can find the interesting of AIGC.
 
 ---
 ## Requirements
