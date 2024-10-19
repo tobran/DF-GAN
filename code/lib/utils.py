@@ -196,6 +196,33 @@ def tokenize(wordtoix, text_filepath):
         return captions, cap_lens, new_sent
 
 
+def tokenize_prompt(wordtoix, prompt):
+    '''Tokenize a single prompt for image generation'''
+    tokenizer = get_tokenizer()  # Assuming this is a function that returns your tokenizer
+    sent = prompt.lower().replace("\ufffd\ufffd", " ")
+
+    # Tokenize the prompt
+    tokens = tokenizer.tokenize(sent)
+
+    # Prepare caption and its length
+    rev = []
+    for t in tokens:
+        t = t.encode('ascii', 'ignore').decode('ascii')
+        if len(t) > 0 and t in wordtoix:  # Only include tokens in your vocabulary
+            rev.append(wordtoix[t])
+
+    captions = [rev]
+    cap_lens = [len(rev)]
+    new_sent = [sent]
+
+    print('The caption is:', captions)
+    print('The caption length is:', cap_lens)
+    print('Processed sentence:', new_sent)
+    
+    return captions, cap_lens, new_sent
+
+
+
 def sort_example_captions(captions, cap_lens, device):
     max_len = np.max(cap_lens)
     sorted_indices = np.argsort(cap_lens)[::-1]
