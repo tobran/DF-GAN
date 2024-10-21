@@ -7,7 +7,7 @@ import numpy as np
 from PIL import Image
 import pprint
 from tqdm import tqdm
-
+import traceback
 import torch
 import torch.backends.cudnn as cudnn
 from torchvision.utils import save_image, make_grid
@@ -21,7 +21,7 @@ else:
 ROOT_PATH = osp.abspath(osp.join(osp.dirname(osp.abspath(__file__)),  ".."))
 sys.path.insert(0, ROOT_PATH)
 from lib.utils import mkdir_p, get_rank, merge_args_yaml, get_time_stamp, load_netG
-from lib.utils import tokenize, truncated_noise, prepare_sample_data
+from lib.utils import tokenize, truncated_noise, prepare_sample_data,tokenize_prompt
 from lib.perpare import prepare_models
 
 
@@ -30,7 +30,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description='DF-GAN')
     parser.add_argument('--cfg', dest='cfg_file', type=str, default='../cfg/model/coco.yml',
                         help='optional config file')
-    parser.add_argument('--imgs_per_sent', type=int, default=16,
+    parser.add_argument('--imgs_per_sent', type=int, default=1,
                         help='the number of images per sentence')
     parser.add_argument('--imsize', type=int, default=256,
                         help='image szie')
@@ -40,10 +40,12 @@ def parse_args():
                         help='if training')
     parser.add_argument('--multi_gpus', type=bool, default=False,
                         help='if use multi-gpu')
-    parser.add_argument('--gpu_id', type=int, default=2,
+    parser.add_argument('--gpu_id', type=int, default=0,
                         help='gpu id')
     parser.add_argument('--local_rank', default=-1, type=int,
         help='node rank for distributed training')
+    parser.add_argument('--data_dir',type=str,default='../../data/coco',
+        help='path to your data directory')
     parser.add_argument('--random_sample', action='store_true',default=True, 
         help='whether to sample the dataset with random sampler')
     args = parser.parse_args()
@@ -65,24 +67,105 @@ def sample_example(wordtoix, netG, text_encoder, args):
     text_filepath, img_save_path = args.example_captions, args.samples_save_dir
     truncation, trunc_rate = args.truncation, args.trunc_rate
     z_dim = args.z_dim
+    
+    # Create the image save directory if it doesn't exist
+    if not osp.exists(img_save_path):
+        os.makedirs(img_save_path, exist_ok=True)
+    
     captions, cap_lens, _ = tokenize(wordtoix, text_filepath)
-    sent_embs, _  = prepare_sample_data(captions, cap_lens, text_encoder, device)
+    sent_embs, _ = prepare_sample_data(captions, cap_lens, text_encoder, device)
     caption_num = sent_embs.size(0)
+
     # get noise
-    if truncation==True:
+    if truncation == True:
         noise = truncated_noise(batch_size, z_dim, trunc_rate)
         noise = torch.tensor(noise, dtype=torch.float).to(device)
     else:
         noise = torch.randn(batch_size, z_dim).to(device)
+    
     # sampling
     with torch.no_grad():
-        fakes = []
         for i in tqdm(range(caption_num)):
             sent_emb = sent_embs[i].unsqueeze(0).repeat(batch_size, 1)
             fakes = netG(noise, sent_emb)
-            img_name = osp.join(img_save_path,'Sent%03d.png'%(i+1))
-            vutils.save_image(fakes.data, img_name, nrow=4, range=(-1, 1), normalize=True)
+            img_name = osp.join(img_save_path, 'Sent%03d.png' % (i + 1))
+            
+            # Save the generated image to the directory
+            vutils.save_image(fakes.data, img_name, nrow=4, normalize=True)
             torch.cuda.empty_cache()
+
+
+def sample_from_prompt(prompt, wordtoix, netG, text_encoder, args):
+
+    batch_size, device = args.imgs_per_sent, args.device
+    text_filepath,img_save_path = args.example_captions,args.samples_save_dir
+    truncation, trunc_rate = args.truncation, args.trunc_rate
+    z_dim = args.z_dim
+    
+    # Create the image save directory if it doesn't exist
+    if not osp.exists(img_save_path):
+        os.makedirs(img_save_path, exist_ok=True)
+    
+    # Tokenize the user prompt
+    captions, cap_lens, _ = tokenize_prompt(wordtoix,prompt)
+    sent_embs, _ = prepare_sample_data(captions, cap_lens, text_encoder, device)
+    caption_num = sent_embs.size(0)
+
+    # Generate noise
+    if truncation:
+        noise = truncated_noise(batch_size, z_dim, trunc_rate)
+        noise = torch.tensor(noise, dtype=torch.float).to(device)
+    else:
+        noise = torch.randn(batch_size, z_dim).to(device)
+    
+    # Sampling
+    with torch.no_grad():
+        for i in tqdm(range(caption_num)):
+            sent_emb = sent_embs[i].unsqueeze(0).repeat(batch_size, 1)
+            fakes = netG(noise, sent_emb)
+            img_name = osp.join(img_save_path, 'Prompt_Sent%03d.png' % (i + 1))
+            
+            # Save the generated image
+            vutils.save_image(fakes.data, img_name, nrow=4, normalize=True)
+            torch.cuda.empty_cache()
+
+
+
+def process_prompt(args):
+    # Set up directories and parameters
+    time_stamp = get_time_stamp()
+    args.samples_save_dir = osp.join(args.samples_save_dir, time_stamp)
+    
+    if args.multi_gpus and get_rank() != 0:
+        return  # Multi-GPU case, ignore the rank 0 condition here
+    
+    mkdir_p(args.samples_save_dir)
+    
+    # Load data and models
+    pickle_path = os.path.join('C:\\Users\\vishw\\Desktop\\test\\TTI\\DF-GAN\\data\\coco', 'captions_DAMSM.pickle')
+    args.vocab_size, wordtoix = build_word_dict(pickle_path)
+    _, text_encoder, netG, _, _ = prepare_models(args)
+    model_path = osp.join(ROOT_PATH, args.checkpoint)
+    netG = load_netG(netG, model_path, args.multi_gpus, train=False)
+    netG.eval()
+    
+    if get_rank() == 0:
+        print('Load %s for NetG' % (args.checkpoint))
+        print("************ Start sampling ************")
+    
+    # Prompt user for input
+    prompt = input("Enter a text prompt for image generation: ")
+
+    # Sample based on the prompt
+    start_t = time.time()
+    sample_from_prompt(prompt, wordtoix, netG, text_encoder, args)
+    end_t = time.time()
+    
+    if get_rank() == 0:
+        print('*' * 40)
+        print('Sampling done, %.2fs cost, saved to %s' % (end_t - start_t, args.samples_save_dir))
+        print('*' * 40)
+
 
 
 def main(args):
@@ -93,7 +176,7 @@ def main(args):
     else:
         mkdir_p(args.samples_save_dir) 
     # prepare data
-    pickle_path = os.path.join(args.data_dir, 'captions_DAMSM.pickle')
+    pickle_path = os.path.join('C:\\Users\\vishw\\Desktop\\test\\TTI\\DF-GAN\\data\\coco', 'captions_DAMSM.pickle')
     args.vocab_size, wordtoix = build_word_dict(pickle_path)
     # prepare models
     _, text_encoder, netG, _, _ = prepare_models(args)
@@ -138,4 +221,11 @@ if __name__ == "__main__":
             args.device = torch.device("cuda")
     else:
         args.device = torch.device('cpu')
-    main(args)
+
+    try:
+        process_prompt(args)
+    except Exception as e:
+        print("Exception: ",e)
+        print("Cause of exception: ",e.__cause__)
+        print("Line: ",e.__traceback__)
+
